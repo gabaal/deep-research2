@@ -1,3 +1,4 @@
+import QnA from "@/components/deep-research/QnA";
 import UserInput from "@/components/deep-research/UserInput";
 import Image from "next/image";
 
@@ -10,6 +11,7 @@ export default function Home() {
 <p className="text-gray-600 text-center">Enter a topic and answer a few questions to generate a comprehensive research report.</p>
         </div>
         <UserInput />
+        <QnA/>
       </main>
       
   );

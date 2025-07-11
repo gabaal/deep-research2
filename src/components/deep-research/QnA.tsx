@@ -6,7 +6,7 @@ import { useEffect } from 'react'
 
 const QnA = () => {
 
-    const {questions, isCompleted, topic, answers, setIsLoading} = useDeepResearchStore()
+    const {questions, isCompleted, topic, answers} = useDeepResearchStore()
 
 const { append, data} =useChat({
     api: "/api/deep-research",

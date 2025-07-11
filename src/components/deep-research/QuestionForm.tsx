@@ -23,7 +23,7 @@ const formSchema = z.object({
     answer: z.string().min(1, "Answer is required"),
 })
 const QuestionForm = () => {
-    const { questions, currentQuestion, answers, setCurrentQuestion, setAnswers, setIsCompleted, setIsLoading } = useDeepResearchStore()
+    const { questions, currentQuestion, answers, setCurrentQuestion, setAnswers, setIsCompleted} = useDeepResearchStore()
     const form = useForm<z.infer<typeof formSchema>>({
         resolver: zodResolver(formSchema),
         defaultValues: {

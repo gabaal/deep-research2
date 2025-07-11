@@ -13,6 +13,7 @@ import {
 } from "@/components/ui/form"
 import { Input } from "@/components/ui/input"
 import { useDeepResearchStore } from "@/store/deepResearch"
+import { Loader2Icon } from "lucide-react"
 
 const formSchema = z.object({
     input: z.string().min(2).max(200),
@@ -20,7 +21,7 @@ const formSchema = z.object({
 
 const UserInput = () => {
 
-const {setQuestions, setTopic} = useDeepResearchStore()
+const {setQuestions, setTopic, isLoading, setIsLoading} = useDeepResearchStore()
 
     const form = useForm<z.infer<typeof formSchema>>({
         resolver: zodResolver(formSchema),
@@ -30,6 +31,7 @@ const {setQuestions, setTopic} = useDeepResearchStore()
     })
 
    async function onSubmit(values: z.infer<typeof formSchema>) {
+    setIsLoading(true)
         try{
             setTopic(values.input)
             const response = await fetch('/api/generate-questions', {
@@ -41,6 +43,8 @@ const {setQuestions, setTopic} = useDeepResearchStore()
             console.log(data)
         } catch (error) {
             console.error("Error submitting form:", error)
+        } finally {
+            setIsLoading(false)
         }
     }
     return (
@@ -60,7 +64,11 @@ const {setQuestions, setTopic} = useDeepResearchStore()
                         </FormItem>
                     )}
                 />
-                <Button className="rounded-full px-6 cursor-pointer" type="submit">Submit</Button>
+                <Button disabled={isLoading} className="rounded-full px-6 cursor-pointer" type="submit">
+                    {isLoading ? <>
+                    <Loader2Icon className="mr-2 h-4 w-4 animate-spin"/> Generating...</>
+                    : 'Submit'}
+                </Button>
             </form>
         </Form>
     )

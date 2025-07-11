@@ -1,5 +1,5 @@
 {
-  "name": "deep-research",
+  "name": "deep-research-ai-agent",
   "version": "0.1.0",
   "private": true,
   "scripts": {
@@ -40,7 +40,7 @@
     "tailwind-merge": "^3.0.2",
     "tailwindcss-animate": "^1.0.7",
     "zod": "^3.24.2",
-    "zustand": "^5.0.6"
+    "zustand": "^5.0.3"
   },
   "devDependencies": {
     "@eslint/eslintrc": "^3",
